@@ -49,7 +49,7 @@ io.on('connection', async (socket) => {
     // Read system text from file asynchronously
     const systemText = await readSystemTextFromFile("systemi.txt");
     // let systemText = "";
-	const systemInstruction = { role: "system", parts: [{ text: systemText }] };
+    const systemInstruction = { role: "system", parts: [{ text: systemText }] };
 
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro-latest", systemInstruction, generationConfig, safetySettings }, { apiVersion });
     const chat = model.startChat({});
@@ -60,8 +60,8 @@ io.on('connection', async (socket) => {
         const result = await chat.sendMessage(prompt);
         const response = await result.response;
         console.log('Response received');
-		// console.log(util.inspect(response.candidates, {showHidden: false, depth: null, colors: true}))
-		const output = response.text();
+	// console.log(util.inspect(response.candidates, {showHidden: false, depth: null, colors: true}))
+	const output = response.text();
         socket.emit('response', output);
       } catch (err) {
         console.error(err);
