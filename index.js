@@ -10,7 +10,7 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const fs = require('fs'); // Import the file system module
 const apiVersion = 'v1beta';
 const generationConfig = {
-      temperature: 0.0,
+      temperature: 0.9,
     };
 const safetySettings = [
       {
