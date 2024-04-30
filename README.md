@@ -32,3 +32,4 @@ const generationConfig = {
       temperature: 0.9,
     };
 ```
+to be able to use this api, you need to get an api from https://makersuite.google.com/app/apikey, and set as environment variable named GEMINI_API_KEY
