@@ -25,3 +25,10 @@ if you want to see returned candidates  on console, unmark following line:
 ```
 
 to reset the chat, refresh page.
+
+do not forget to set randomness (temperature) between 0.0 to 1.0 according to your needs here:
+```
+const generationConfig = {
+      temperature: 0.9,
+    };
+```
