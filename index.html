@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <title>Gemini 1.5 Pro Chat</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <script src="/socket.io/socket.io.js"></script> 
+</head>
+<body>
+  <h1>Gemini 1.5 Pro Chat</h1>
+  <button id="clearButton"> Delete below text</button><br>
+  <textarea id="prompt" rows="20" cols="100" spellcheck="false" ></textarea>
+  <button id="send">Send left prompt</button><br> 
+  <button id="copyButton">Copy below text</button>   <button id="history">Get history</button>
+<div style="padding:10px; color:black;height:300px; width:840px; white-space:pre-wrap; overflow-y: scroll" id="response" ></div><br>
+  <script>
+    const socket = io();
+
+    const promptArea = document.getElementById('prompt');
+    const sendButton = document.getElementById('send');
+    const responseArea = document.getElementById('response');
+	const clearButton = document.getElementById('clearButton');
+    const copyButton = document.getElementById('copyButton');
+	const historyButton = document.getElementById('history');
+	
+	let isSending = false; // Flag to track sending status
+	
+    clearButton.addEventListener('click', () => {
+		document.getElementById('prompt').value="";
+		document.getElementById('prompt').focus();
+    });
+
+	copyButton.addEventListener('click', () => {
+		navigator.clipboard.writeText(document.getElementById("response").innerText);
+    });
+	
+	promptArea.addEventListener('keyup', function (event) {
+	if (event.keyCode === 13 && !isSending) { // Only if Enter is pressed and not already sending
+		event.preventDefault();
+		isSending = true; // Set flag to indicate sending is in progress
+		sendButton.disabled = true; 
+		const prompt = promptArea.value;
+		socket.emit('prompt', prompt);
+		}
+	});
+
+    historyButton.addEventListener('click', () => {
+      socket.emit('history', prompt);
+    });
+
+    sendButton.addEventListener('click', () => {
+	  sendButton.disabled = true; // Disable button immediately on click
+      const prompt = promptArea.value;
+      socket.emit('prompt', prompt);
+    });
+
+    socket.on('response', (response) => {
+      responseArea.innerHTML = response;
+	  sendButton.disabled = false; // Enable button after response is received
+	  isSending = false; // Reset flag after response is received
+    });
+
+    socket.on('error', (error) => {
+      responseArea.innerHTML = error;
+    });
+	
+  </script>
+</body>
+</html>
