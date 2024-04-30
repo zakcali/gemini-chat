@@ -65,7 +65,7 @@ io.on('connection', async (socket) => {
         socket.emit('response', output);
       } catch (err) {
         console.error(err);
-        socket.emit('error', 'An error occurred ' + util.inspect(response.candidates, {showHidden: false, depth: null, colors: true}));
+        socket.emit('error', 'An error occurred');
       }
     });
 
