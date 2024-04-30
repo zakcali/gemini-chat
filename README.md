@@ -1,5 +1,5 @@
 # gemini-chat
-nodejs program to send and receive messages, creates message history
+nodejs program to send and receive messages, and get message history
 
 Install the libraries by entering the following command in the keyboard:
 ```
