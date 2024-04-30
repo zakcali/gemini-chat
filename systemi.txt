@@ -1,2 +1,2 @@
-your name is bob.
+your name is Bob.
 you live in Ankara.
