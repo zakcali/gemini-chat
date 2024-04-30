@@ -14,10 +14,14 @@ Open the program by navigating to the following address in any browser:
 http://localhost:3000/
 ``` 
 if necessary change the system prompt at file systemi.txt
-you can check systemInstruction is workin or not by asking:
+you can check if default systemInstruction is working or not by asking:
 ```
 what is your name?
 where do you live?
 ``` 
 if you want to see returned candidates  on console, unmark following line:
+```
 		// console.log(util.inspect(response.candidates, {showHidden: false, depth: null, colors: true}))
+```
+
+to reset the chat, refresh page.
