@@ -11,29 +11,27 @@
   <textarea id="prompt" rows="20" cols="100" spellcheck="false" ></textarea>
   <button id="send">Send left prompt</button><br> 
   <button id="copyButton">Copy below text</button>   <button id="history">Get history</button>
-<div style="padding:10px; color:black;height:300px; width:840px; white-space:pre-wrap; overflow-y: scroll" id="response" ></div><br>
+  <div style="padding:10px; color:black;height:300px; width:840px; white-space:pre-wrap; overflow-y: scroll" id="response" ></div><br>
   <script>
     const socket = io();
-
     const promptArea = document.getElementById('prompt');
     const sendButton = document.getElementById('send');
     const responseArea = document.getElementById('response');
-	const clearButton = document.getElementById('clearButton');
+    const clearButton = document.getElementById('clearButton');
     const copyButton = document.getElementById('copyButton');
-	const historyButton = document.getElementById('history');
-	
-	let isSending = false; // Flag to track sending status
+    const historyButton = document.getElementById('history');
+    let isSending = false; // Flag to track sending status
 	
     clearButton.addEventListener('click', () => {
 		document.getElementById('prompt').value="";
 		document.getElementById('prompt').focus();
     });
 
-	copyButton.addEventListener('click', () => {
-		navigator.clipboard.writeText(document.getElementById("response").innerText);
+    copyButton.addEventListener('click', () => {
+    navigator.clipboard.writeText(document.getElementById("response").innerText);
     });
-	
-	promptArea.addEventListener('keyup', function (event) {
+
+    promptArea.addEventListener('keyup', function (event) {
 	if (event.keyCode === 13 && !isSending) { // Only if Enter is pressed and not already sending
 		event.preventDefault();
 		isSending = true; // Set flag to indicate sending is in progress
@@ -62,8 +60,7 @@
     socket.on('error', (error) => {
       responseArea.innerHTML = error;
 	  sendButton.disabled = false; // Enable button after response is received
-	  isSending = false; // Reset flag after response is received
-	  
+	  isSending = false; // Reset flag after response is received	  
     });
 	
   </script>
