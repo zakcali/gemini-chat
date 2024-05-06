@@ -49,8 +49,7 @@ io.on('connection', async (socket) => {
     // Read system text from file asynchronously
     const systemText = await readSystemTextFromFile("systemi.txt");
     // let systemText = "";
-	const systemInstruction = { role: "system", parts: [{ text: systemText }] };
-
+    const systemInstruction = { role: "system", parts: [{ text: systemText }] };
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro-latest", systemInstruction, generationConfig, safetySettings }, { apiVersion });
     const chat = model.startChat({});
 
@@ -107,5 +106,5 @@ function printChatNicely(chatHistory) {
 }
 
 server.listen(3000, () => {
-  console.log('Server listening on port 3000');
+console.log('Server listening on port 3000');
 });
