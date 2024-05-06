@@ -33,3 +33,11 @@ const generationConfig = {
     };
 ```
 to be able to use this api, you need to get an api from https://makersuite.google.com/app/apikey, and set as environment variable named GEMINI_API_KEY
+
+displays if  response.candidates[0].finishReason is not 'STOP'
+chat session ends if finish reason is: RECITATION 
+look at: https://github.com/google-gemini/generative-ai-js/issues/124
+
+Also look at: https://github.com/google-gemini/generative-ai-js/issues/106 
+
+if chat session ends because of above reasons, just refresh the web page to start a new chat session
