@@ -60,12 +60,12 @@ io.on('connection', async (socket) => {
         const result = await chat.sendMessage(prompt);
         const response = await result.response;
         console.log('Response received');
-		console.log(util.inspect(response.candidates, {showHidden: false, depth: null, colors: true}))
-		if (response.candidates[0].finishReason === 'STOP') {
+	// console.log(util.inspect(response.candidates, {showHidden: false, depth: null, colors: true}))
+	if (response.candidates[0].finishReason === 'STOP') {
 		const output = response.text();
-        socket.emit('response', output);
+        	socket.emit('response', output);
 		}
-		else {
+	else {
 		socket.emit('error', 'An error occurred: ' + response.candidates[0].finishReason );
 		}
       } catch (err) {
